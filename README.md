@@ -14,7 +14,7 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 1. Installer git
 ```sudo apt-get install git```
 2. Cloner le projet
-```git clone https://github.com/GCpas/MesNotes.git && cd MesNotes```
+```git clone https://github.com/GCpas/MesNotes.git && cd MesNotes``` ou ```git clone git@github.com:GCpas/MesNotes.git && cd MesNotes```
 3. Installer python3, pip et virtualenv
 ```sudo apt-get install python3 python3-pip python3-virtualenv```
 4. Créer le dossier .venv

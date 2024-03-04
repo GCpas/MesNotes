@@ -1,0 +1,31 @@
+body {
+    font-family: "Protest Riot", sans-serif;
+    background-color: skyblue;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+.image {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+}
+
+a {
+    margin-right: 50px;
+}
+
+section {
+    margin-top: 50px;
+}
+
+footer {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+    align-items: center;
+}

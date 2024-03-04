@@ -1,7 +1,7 @@
 # MesNotes 📝
 ![](./documentation/logo_mesnotes_en_jpg.jpg)
 
-MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer des notes (posthite).
+MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer des notes (posthite numérique).
 
 ## 🌟 Caractéristiques
 
@@ -20,10 +20,10 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 4. Créer le dossier .venv
 ```sudo virtualenv -p python3 .venv```
 5. Activer la virtualisation
-```sudo source .venv/bin/activate```
+```source .venv/bin/activate```
 6. Installer Flask, SQLAlchemy et Flask-RESTful
 ```sudo pip install Flask```
-```sudo pip install SQLAlchemy```
+```sudo pip install Flask-sqlalchemy```
 ```sudo pip install Flask-RESTful```
 7. Lancer le programme python
 ```sudo python3 MesNotes.py```

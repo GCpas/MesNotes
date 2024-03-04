@@ -9,7 +9,7 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 - **Filtrer vos notes**
 - **Voir la météo de votre ville**
 
-## 🚀 Installation
+## Installation
 
 1. Installer git
 ```sudo apt-get install git```

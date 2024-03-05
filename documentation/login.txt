@@ -1,0 +1,7 @@
+compte geoffrey
+    login : Geoffrey
+    mdp : Ge14ca
+
+compte philippe
+    login : Philippe
+    mdp : 3IL2024

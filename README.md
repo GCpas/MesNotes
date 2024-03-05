@@ -21,10 +21,11 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 ```sudo virtualenv -p python3 .venv```
 5. Activer la virtualisation
 ```source .venv/bin/activate```
-6. Installer Flask, SQLAlchemy et Flask-RESTful
+6. Installer Flask, SQLAlchemy, Flask-RESTful et requests
 ```sudo pip install Flask```
 ```sudo pip install Flask-sqlalchemy```
 ```sudo pip install Flask-RESTful```
+```sudo pip install requests```
 7. Lancer le programme python
 ```sudo python3 MesNotes.py```
 8. Ouvrer un navigateur et taper **127.0.0.1:5000** (c'est l'adresse par défaut).

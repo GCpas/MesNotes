@@ -7,10 +7,6 @@ h1, h3 {
     text-align: center;
 }
 
-.image {
-    text-align: center;
-}
-
 nav {
     text-align: center;
 }
@@ -28,4 +24,23 @@ footer {
     margin-top: 40px;
     justify-content: space-between;
     align-items: center;
+}
+
+.weather-container {
+    background-image: url('../img/ciel.jpg'); /* Chemin de votre image de fond */
+    background-size: cover; /* Assurez-vous que l'image de fond couvre tout le conteneur */
+    background-position: center; /* Centrer l'image de fond */
+    height: 300px; /* Ajustez la hauteur selon vos besoins */
+    position: relative; /* Pour que la position absolue des éléments enfants soit par rapport à ce conteneur */
+}
+
+.weather-info {
+    position: absolute; /* Position absolue pour placer les éléments textuels par rapport au conteneur */
+    top: 50%; /* Positionne le haut de l'élément au centre vertical du conteneur */
+    left: 50%; /* Positionne le côté gauche de l'élément au centre horizontal du conteneur */
+    transform: translate(-50%, -50%); /* Déplace l'élément de 50% de sa propre largeur vers la gauche et vers le haut, le centrage */
+    text-align: center; /* Centre le texte à l'intérieur du conteneur */
+    color: rgb(255, 0, 0); /* Couleur du texte */
+    font-size: 30px; /* Taille de police du texte */
+    font-weight: bold; /* texte en gras */
 }

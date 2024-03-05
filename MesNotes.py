@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
+import requests
+
 app = Flask(__name__)
 
 # Initialisation de l'application Flask
@@ -14,11 +16,21 @@ db = SQLAlchemy(app)
 # Définition du modèle Connexion pour la table 'connexion'
 class Connexion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    id_meteo = db.Column(db.Integer, db.ForeignKey('meteo.id'), nullable=True)
     nom = db.Column(db.String(255), nullable=False)
     mdp = db.Column(db.String(255), nullable=False)
 
     def __repr__(self):
         return '<Connexion %r>' % self.nom
+    
+class Meteo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    api = db.Column(db.String(255), nullable=False)
+    geoapi = db.Column(db.String(255), nullable=False)
+    nom = db.Column(db.String(255), nullable=False)
+
+    def __repr__(self):
+        return '<Meteo %r>' % self.id
 
 # Route pour la page de connexion
 @app.route('/', methods=['GET', 'POST'])
@@ -38,7 +50,20 @@ def login():
 # Route pour la page utilisateur
 @app.route('/utilisateur/<nom>')
 def utilisateur(nom):
-    return render_template('utilisateur.html', nom_utilisateur=nom)
+
+    utilisateur = Connexion.query.filter_by(nom=nom).first()
+    if not utilisateur:
+        return "Utilisateur non trouvé"
+
+    meteo = Meteo.query.get(utilisateur.id_meteo)
+    if not meteo:
+        return "Information météo non disponible"
+
+    url = f'{meteo.geoapi}appid={meteo.api}&units=metric'
+    response = requests.get(url)
+    weather_data = response.json()
+
+    return render_template('utilisateur.html', nom_utilisateur=nom, weather_data=weather_data, ville=meteo.nom)
 
 def verifier_identifiants(nom_utilisateur, mot_de_passe):
     utilisateur = Connexion.query.filter_by(nom=nom_utilisateur, mdp=mot_de_passe).first()

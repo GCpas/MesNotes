@@ -11,9 +11,15 @@
             <h1>MesNotes</h1>
             <h3>Bonjour {{ nom_utilisateur }} </h3>
         </header>
-        <div class="image">
-            <img src="/static/img/ciel.jpg"/>
+
+        <div class="weather-container">
+            <div class="weather-info">
+                <p>Ville : {{ ville }}</p>
+                <p>Température : {{ weather_data.main.temp }}</p>
+                <p>Conditions météorologiques : {{ weather_data.weather[0].description }}</p>
+            </div>
         </div>
+
         <nav>
             <ul>
                 <a href="#voir">Voir les notes</a>

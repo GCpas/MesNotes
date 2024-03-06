@@ -28,9 +28,59 @@
                 <a href="#supprimer">Supprimer une note</a>
             </ul>
         </nav>
+
         <section id="voir">
-            <h2>Voir les notes</h2>
+            <h2>Voir mes notes</h2>
+        
+            <!-- Recherche par titre -->
+            <form action="{{ url_for('utilisateur', nom=nom_utilisateur) }}" method="GET">
+                <input type="text" name="search_query" placeholder="Rechercher par titre...">
+                <button type="submit">Rechercher</button>
+            </form>
+
+            <br>
+        
+            <!-- Tri des notes -->
+            <a href="{{ url_for('utilisateur', nom=nom_utilisateur, sort_order='desc') }}">Tri du plus récent au plus ancien</a>
+            <a href="{{ url_for('utilisateur', nom=nom_utilisateur, sort_order='asc') }}">Tri du plus ancien au plus récent</a>
+        
+            <br/><br/>
+
+            <!-- Notes -->
+            {% for note in notes %}
+            <div class="post-it">
+                <h3>{{ note.titre }}</h3>
+                <p>{{ note.message }}</p>
+                <p>Date de publication : {{ note.date }}</p>
+            </div>
+            {% endfor %}
+        
+            <br>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if notes.has_prev %}
+                    <a href="{{ url_for('utilisateur', nom=nom_utilisateur, page=notes.prev_num) }}">&laquo; Précédent</a>
+                {% endif %}
+                
+                {% for num in notes.iter_pages() %}
+                    {% if num %}
+                        {% if num == notes.page %}
+                            <strong>{{ num }}</strong>
+                        {% else %}
+                            <a href="{{ url_for('utilisateur', nom=nom_utilisateur, page=num) }}">{{ num }}</a>
+                        {% endif %}
+                    {% else %}
+                        ...
+                    {% endif %}
+                {% endfor %}
+        
+                {% if notes.has_next %}
+                    <a href="{{ url_for('utilisateur', nom=nom_utilisateur, page=notes.next_num) }}">Suivant &raquo;</a>
+                {% endif %}
+            </div>
         </section>
+
         <section id="creer">
             <h2>Créer une note</h2>
         </section>

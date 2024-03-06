@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime, timedelta
+from sqlalchemy import func
 
 import requests
 
@@ -32,6 +34,16 @@ class Meteo(db.Model):
     def __repr__(self):
         return '<Meteo %r>' % self.id
 
+class Notes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_connexion = db.Column(db.Integer, db.ForeignKey('connexion.id'), nullable=True)
+    titre = db.Column(db.String(255), nullable=False)
+    message = db.Column(db.String(255), nullable=False)
+    date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    def __rep__(self):
+        return f'<Note {self.id}: {self.titre}>'
+
 # Route pour la page de connexion
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -63,7 +75,25 @@ def utilisateur(nom):
     response = requests.get(url)
     weather_data = response.json()
 
-    return render_template('utilisateur.html', nom_utilisateur=nom, weather_data=weather_data, ville=meteo.nom)
+    page = request.args.get('page', 1, type=int)
+    search_query = request.args.get('search_query', '')
+
+    # Filtrage par titre
+    notes_query = Notes.query.filter(Notes.id_connexion == utilisateur.id)
+    if search_query:
+        notes_query = notes_query.filter(Notes.titre.ilike(f"%{search_query}%"))
+
+    # Tri des notes
+    sort_order = request.args.get('sort_order', 'desc')
+    if sort_order == 'desc':
+        notes_query = notes_query.order_by(Notes.date.desc())
+    else:
+        notes_query = notes_query.order_by(Notes.date.asc())
+
+    # Récupération des notes paginées
+    notes = notes_query.paginate(page=page, per_page=4)
+
+    return render_template('utilisateur.html', nom_utilisateur=nom, weather_data=weather_data, ville=meteo.nom, notes=notes)
 
 def verifier_identifiants(nom_utilisateur, mot_de_passe):
     utilisateur = Connexion.query.filter_by(nom=nom_utilisateur, mdp=mot_de_passe).first()

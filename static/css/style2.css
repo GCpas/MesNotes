@@ -44,3 +44,16 @@ footer {
     font-size: 30px; /* Taille de police du texte */
     font-weight: bold; /* texte en gras */
 }
+
+.post-it {
+    background-color: #ffff99;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #cccc00;
+    border-radius: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}

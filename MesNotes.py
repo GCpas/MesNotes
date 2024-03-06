@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 from sqlalchemy import func
-
+from flask_restful import Api, Resource
 import requests
 
 app = Flask(__name__)
@@ -12,8 +12,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///MesNotes.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 
-# Initialisation de l'extension SQLAlchemy
+# Initialisation de l'extension SQLAlchemy et de l'API
 db = SQLAlchemy(app)
+api = Api(app)
 
 # Définition du modèle Connexion pour la table 'connexion'
 class Connexion(db.Model):
@@ -43,6 +44,25 @@ class Notes(db.Model):
 
     def __rep__(self):
         return f'<Note {self.id}: {self.titre}>'
+
+#RESTful
+class MeteoUtilisateur(Resource):
+    def get(self, nom_utilisateur):
+        utilisateur = Connexion.query.filter_by(nom=nom_utilisateur).first()
+        if not utilisateur:
+            return {"message": "Utilisateur non trouvé"}, 404
+
+        meteo = Meteo.query.get(utilisateur.id_meteo)
+        if not meteo:
+            return {"message": "Information météo non disponible"}, 404
+
+        url = f'{meteo.geoapi}appid={meteo.api}&units=metric'
+        response = requests.get(url)
+        weather_data = response.json()
+
+        return {"nom_utilisateur": nom_utilisateur, "ville": meteo.nom, "weather_data": weather_data}, 200
+
+api.add_resource(MeteoUtilisateur, '/utilisateur/<string:nom_utilisateur>/weather')
 
 # Route pour la page de connexion
 @app.route('/', methods=['GET', 'POST'])

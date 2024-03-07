@@ -46,6 +46,7 @@ class Notes(db.Model):
         return f'<Note {self.id}: {self.titre}>'
 
 #RESTful
+#météo
 class MeteoUtilisateur(Resource):
     def get(self, nom_utilisateur):
         utilisateur = Connexion.query.filter_by(nom=nom_utilisateur).first()
@@ -118,6 +119,30 @@ def utilisateur(nom):
 def verifier_identifiants(nom_utilisateur, mot_de_passe):
     utilisateur = Connexion.query.filter_by(nom=nom_utilisateur, mdp=mot_de_passe).first()
     return utilisateur is not None
+
+# Route pour la création de note
+@app.route('/utilisateur/<nom>/creer-note', methods=['GET', 'POST'])
+def creer_note(nom):
+    if request.method == 'POST':
+        titre = request.form['titre']
+        message = request.form['message']
+
+        # Récupérer l'utilisateur
+        utilisateur = Connexion.query.filter_by(nom=nom).first()
+
+        # Créer une nouvelle note
+        nouvelle_note = Notes(titre=titre, message=message, id_connexion=utilisateur.id)
+
+        try:
+            # Ajouter la note à la base de données
+            db.session.add(nouvelle_note)
+            db.session.commit()
+            return redirect(url_for('utilisateur', nom=nom))
+        except:
+            return 'Une erreur s\'est produite lors de la création de la note'
+
+    else:
+        return render_template('creer_note.html', nom_utilisateur=nom)
 
 if __name__ == '__main__':
     with app.app_context():

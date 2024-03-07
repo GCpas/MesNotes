@@ -144,6 +144,52 @@ def creer_note(nom):
     else:
         return render_template('creer_note.html', nom_utilisateur=nom)
 
+@app.route('/utilisateur/<nom>/modifiernote', methods=['GET', 'POST'])
+def modifier_note(nom):
+    if request.method == 'POST':
+        titre = request.form.get('titre')
+        ancien_message = request.form.get('ancien_message')
+        nouveau_message = request.form.get('message')
+
+        # Recherche de l'utilisateur dans la base de données
+        utilisateur = Connexion.query.filter_by(nom=nom).first()
+        if utilisateur:
+            # Recherche de la note correspondante
+            note = Notes.query.filter_by(titre=titre, message=ancien_message, id_connexion=utilisateur.id).first()
+            if note:
+                # Met à jour le message de la note
+                note.message = nouveau_message
+                db.session.commit()
+                return redirect(url_for('utilisateur', nom=nom))
+            else:
+                return "Note non trouvée"
+        else:
+            return "Utilisateur non trouvé"
+    else:
+        return render_template('modifier_note.html')
+    
+@app.route('/utilisateur/<nom>/supprimer-note', methods=['GET', 'POST'])
+def supprimer_note(nom):
+    if request.method == 'POST':
+        titre = request.form.get('titre')
+
+        # Recherche de l'utilisateur dans la base de données
+        utilisateur = Connexion.query.filter_by(nom=nom).first()
+        if utilisateur:
+            # Recherche de la note correspondante par le titre
+            note = Notes.query.filter_by(titre=titre, id_connexion=utilisateur.id).first()
+            if note:
+                # Supprime la note de la base de données
+                db.session.delete(note)
+                db.session.commit()
+                return redirect(url_for('utilisateur', nom=nom))
+            else:
+                return "Note non trouvée"
+        else:
+            return "Utilisateur non trouvé"
+    else:
+        return render_template('supprimer_note.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

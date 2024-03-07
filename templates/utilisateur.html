@@ -91,18 +91,34 @@
         <section id="creer">
             <h2>Créer une note</h2>
             <form action="{{ url_for('creer_note', nom=nom_utilisateur) }}" method="POST">
-                <input type="text" name="titre" placeholder="Titre de la note" required><br>
-                <textarea name="message" placeholder="Contenu de la note" required></textarea><br>
+                <label for="titre">Titre de la note :</label><br>
+                <input type="text" name="titre" required><br>
+                <label for="message">Message :</label><br>
+                <textarea name="message" required></textarea><br>
                 <button type="submit">Créer la note</button>
             </form>
         </section>
 
         <section id="modifier">
             <h2>Modifier une note</h2>
+            <form action="{{ url_for('modifier_note', nom=nom_utilisateur) }}" method="POST">
+                <label for="titre">Titre de la note :</label><br>
+                <input type="text" id="titre" name="titre"><br>
+                <label for="ancien_message">Ancien message :</label><br>
+                <textarea name="ancien_message" id="ancien_message" rows="4" cols="50"></textarea><br>
+                <label for="message">Nouveau message :</label><br>
+                <textarea name="message" id="message" rows="4" cols="50"></textarea><br>
+                <button type="submit">Modifier la note</button>
+            </form>
         </section>
 
         <section id="supprimer">
             <h2>Supprimer une note</h2>
+            <form method="POST" action="{{ url_for('supprimer_note', nom=nom_utilisateur) }}">
+                <label for="titre">Titre de la note à supprimer :</label><br>
+                <input type="text" id="titre" name="titre"><br>
+                <button type="submit">Supprimer la note</button>
+            </form>
         </section>
         
         <footer>

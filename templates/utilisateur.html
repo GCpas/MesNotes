@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html> <!-- Déclaration du type de document HTML -->
+<html lang="fr"> <!-- Définition de la lange de la page HTML -->
     <head>
-        <meta charset="UTF-8">
-        <title>Utilisateur - MesNotes</title>
-        <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/style2.css">
+        <meta charset="UTF-8"> <!-- Définition de l'encodage des caractères -->
+        <title>Utilisateur - MesNotes</title> <!-- Titre de la page -->
+        <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet"> <!-- lien de la police d'écriture -->
+        <link rel="stylesheet" href="/static/css/style2.css"> <!-- Lien vers le fichier CSS -->
     </head>
     <body>
         <header>
-            <h1>MesNotes</h1>
-            <h3>Bonjour {{ nom_utilisateur }} </h3>
+            <h1>MesNotes</h1> <!-- Titre principal -->
+            <h3>Bonjour {{ nom_utilisateur }} </h3> <!-- Affiche le nom d'utilisateur -->
         </header>
 
-        <div class="weather-container">
-            <div class="weather-info">
+        <div class="weather-container"> <!-- Conteneur pour les informations métérologiques -->
+            <div class="weather-info"> <!-- Affichage des informations métérologique -->
                 <p>Ville : {{ ville }}</p>
                 <p>Température : {{ weather_data.main.temp }}</p>
                 <p>Conditions météorologiques : {{ weather_data.weather[0].description }}</p>
             </div>
         </div>
 
-        <div>
+        <div> <!-- Instructions pour tester Flask-RESTful -->
             <h3>Pour tester le Flask-RESTful, rajouter a la fin de l'URL " /weather "</h3>
             <h3>Exemple : 127.0.0.1:5000/utilisateur/Philippe/weather</h3>
             <h3>Evidemment, remplacer "Philippe" par votre login</h3>
@@ -28,7 +28,7 @@
         </div>
 
         <nav>
-            <ul>
+            <ul> <!-- Lien pour différentes sections de la page -->
                 <a href="#voir">Voir les notes</a>
                 <a href="#creer">Créer une note</a>
                 <a href="#modifier">Modifier une note</a>
@@ -36,24 +36,25 @@
             </ul>
         </nav>
 
-        <section id="voir">
+        <section id="voir"> <!-- Section pour voir les notes -->
             <h2>Voir mes notes</h2>
         
-            <!-- Recherche par titre -->
+            <!-- Formulaire de recherche par titre -->
             <form action="{{ url_for('utilisateur', nom=nom_utilisateur) }}" method="GET">
                 <input type="text" name="search_query" placeholder="Rechercher par titre...">
                 <button type="submit">Rechercher</button>
             </form>
 
+            <!-- Saut de ligne -->
             <br>
         
-            <!-- Tri des notes -->
+            <!-- Tri des notes (ascendant, descendant) -->
             <a href="{{ url_for('utilisateur', nom=nom_utilisateur, sort_order='desc') }}">Tri du plus récent au plus ancien</a>
             <a href="{{ url_for('utilisateur', nom=nom_utilisateur, sort_order='asc') }}">Tri du plus ancien au plus récent</a>
         
             <br/><br/>
 
-            <!-- Notes -->
+            <!-- Affichage des notes -->
             {% for note in notes %}
             <div class="post-it">
                 <h3>{{ note.titre }}</h3>
@@ -66,6 +67,7 @@
 
             <!-- Pagination -->
             <div class="pagination">
+                <!-- Lien pour la pagination -->
                 {% if notes.has_prev %}
                     <a href="{{ url_for('utilisateur', nom=nom_utilisateur, page=notes.prev_num) }}">&laquo; Précédent</a>
                 {% endif %}
@@ -88,7 +90,7 @@
             </div>
         </section>
 
-        <section id="creer">
+        <section id="creer"> <!-- Section pour créer une note -->
             <h2>Créer une note</h2>
             <form action="{{ url_for('creer_note', nom=nom_utilisateur) }}" method="POST">
                 <label for="titre">Titre de la note :</label><br>
@@ -99,28 +101,29 @@
             </form>
         </section>
 
-        <section id="modifier">
+        <section id="modifier"> <!-- Section pour modifier une note -->
             <h2>Modifier une note</h2>
             <form action="{{ url_for('modifier_note', nom=nom_utilisateur) }}" method="POST">
                 <label for="titre">Titre de la note :</label><br>
-                <input type="text" id="titre" name="titre"><br>
+                <input type="text" id="titre" name="titre" required><br>
                 <label for="ancien_message">Ancien message :</label><br>
-                <textarea name="ancien_message" id="ancien_message" rows="4" cols="50"></textarea><br>
+                <textarea name="ancien_message" id="ancien_message" rows="4" cols="50" required></textarea><br>
                 <label for="message">Nouveau message :</label><br>
-                <textarea name="message" id="message" rows="4" cols="50"></textarea><br>
+                <textarea name="message" id="message" rows="4" cols="50" required></textarea><br>
                 <button type="submit">Modifier la note</button>
             </form>
         </section>
 
-        <section id="supprimer">
+        <section id="supprimer"> <!-- Section pour supprimé une note -->
             <h2>Supprimer une note</h2>
             <form method="POST" action="{{ url_for('supprimer_note', nom=nom_utilisateur) }}">
                 <label for="titre">Titre de la note à supprimer :</label><br>
-                <input type="text" id="titre" name="titre"><br>
+                <input type="text" id="titre" name="titre" required><br>
                 <button type="submit">Supprimer la note</button>
             </form>
         </section>
         
+        <!-- Pied de page -->
         <footer>
             <div>
                 <p>Copyright@Geoffrey CARO - 2024</p>

@@ -1,53 +1,53 @@
 body {
-    font-family: "Protest Riot", sans-serif;
-    background-color: skyblue;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: "Protest Riot", sans-serif; /* Utilisation de la police Protest Riot pour tous */
+    background-color: skyblue; /* Couleur du fond de la page */
+    margin: 0; /* Marge automatique à gauche et à droite pour centrer le contenu */
+    padding: 0; /* Espace intérieur de l'élément */
+    display: flex; /* Utilisation de flexbox pour le pied de page */
+    justify-content: center; /* Répartit les éléments */
+    align-items: center; /* Centre les éléments verticalement */
+    height: 100vh; /* Taille */
 }
 
 .container {
-    max-width: 400px;
-    padding: 50px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* L'argeur max */
+    padding: 50px; /* Espace intérieur de l'élément */
+    background-color: #fff; /* Couleur du fond */
+    border-radius: 5px; /* Rayon de la bordure arrondie */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* boite */
 }
 
 h2 {
-    text-align: center;
+    text-align: center; /* Centre le texte */
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Marge en bas */
 }
 
 .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
+    display: block; /* Affiche l'élément comme un bloc */
+    font-weight: bold; /* texte en gras */
+    margin-bottom: 10px; /* Marge en bas */
 }
 
 .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    width: 100%; /* L'argeur */
+    padding: 8px; /* Espace intérieur de l'élément */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 10px; /* Rayon de la bordure arrondie */
 }
 
 .form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+    width: 100%; /* L'argeur */
+    padding: 10px; /* Espace intérieur de l'élément */
+    background-color: #007bff; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Bordure */
+    border-radius: 3px; /* Rayon de la bordure arrondie */
+    cursor: pointer; /* Curseur de type pointeur au survol */
 }
 
 .form-group button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Couleur de fond */
 }

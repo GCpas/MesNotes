@@ -1,36 +1,36 @@
 body {
-    font-family: "Protest Riot", sans-serif;
-    background-color: skyblue;
+    font-family: "Protest Riot", sans-serif; /* Utilisation de la police Protest Riot pour tous */
+    background-color: skyblue; /* Couleur du fond de la page */
 }
 
 h1, h3 {
-    text-align: center;
+    text-align: center; /* Centre le texte */
 }
 
 nav {
-    text-align: center;
+    text-align: center; /* Centre le texte */
 }
 
 a {
-    margin-right: 50px;
+    margin-right: 50px; /* Ajout d'une marge à droite de chaque lien */
 }
 
 section {
-    margin-top: 50px;
+    margin-top: 50px; /* Ajout d'une marge en haut de chaque section */
 }
 
 footer {
-    display: flex;
-    margin-top: 40px;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* Utilisation de flexbox pour le pied de page */
+    margin-top: 40px; /* Ajout d'une marge en haut */
+    justify-content: space-between; /* Répartit les éléments du pied de page avec un espacement égal entre eux */
+    align-items: center; /* Centre les éléments verticalement dans le pied de page */
 }
 
 .weather-container {
-    background-image: url('../img/ciel.jpg'); /* Chemin de votre image de fond */
-    background-size: cover; /* Assurez-vous que l'image de fond couvre tout le conteneur */
-    background-position: center; /* Centrer l'image de fond */
-    height: 300px; /* Ajustez la hauteur selon vos besoins */
+    background-image: url('../img/ciel.jpg'); /* Chemin de l'image pour afficher la météo */
+    background-size: cover; /* Assure que l'image de fond couvre tout le conteneur */
+    background-position: center; /* Centre l'image de fond */
+    height: 300px; /* Ajuste la hauteur du conteneur */
     position: relative; /* Pour que la position absolue des éléments enfants soit par rapport à ce conteneur */
 }
 
@@ -39,68 +39,63 @@ footer {
     top: 50%; /* Positionne le haut de l'élément au centre vertical du conteneur */
     left: 50%; /* Positionne le côté gauche de l'élément au centre horizontal du conteneur */
     transform: translate(-50%, -50%); /* Déplace l'élément de 50% de sa propre largeur vers la gauche et vers le haut, le centrage */
-    text-align: center; /* Centre le texte à l'intérieur du conteneur */
+    text-align: center; /* Centre le texte */
     color: rgb(255, 0, 0); /* Couleur du texte */
     font-size: 30px; /* Taille de police du texte */
     font-weight: bold; /* texte en gras */
 }
 
 .post-it {
-    background-color: #ffff99;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 2px solid #cccc00;
-    border-radius: 10px;
-    width: 300px;
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
+    background-color: #ffff99; /* Couleur de fond du post-it */
+    padding: 20px; /* Espace intérieur de l'élément */
+    margin-bottom: 20px; /* Marge en bas */
+    border: 2px solid #cccc00; /* Bordure */
+    border-radius: 10px; /* Rayon de la bordure arrondie */
+    width: 300px; /* L'argeur */
+    box-sizing: border-box; /* Inclut la bordure et le rembourrage dans la largeur et la hauteur */
+    display: inline-block; /* Affiche l'élément comme un bloc */
+    vertical-align: top; /* Alignement vertical */
+    text-align: left; /* Texte à gauche */
 }
 
 form {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    margin-top: 20px; /* Marge en haut */
+    padding: 20px; /* Espace intérieur de l'élément */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 5px; /* Rayon de la bordure arrondie */
+    background-color: #f9f9f9; /* Couleur de fond du formulaire */
 }
 
-/* Style des champs de formulaire */
 input[type="text"],
 textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    width: 100%; /* L'argeur */
+    padding: 10px; /* Espace intérieur de l'élément */
+    margin-bottom: 10px; /* Marge en bas */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 4px; /* Rayon de la bordure arrondie */
+    box-sizing: border-box; /* Inclut la bordure et le rembourrage dans la largeur et la hauteur */
 }
 
-/* Style du bouton de soumission */
 button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
+    background-color: #4CAF50; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    padding: 12px 20px; /* Espace intérieur de l'élément */
+    border: none; /* Bordure */
+    border-radius: 4px; /* Rayon de la bordure arrondie */
+    cursor: pointer; /* Curseur de type pointeur au survol du bouton */
+    float: right; /* Alignement flottant à droite du bouton */
 }
 
-/* Style du bouton de soumission au survol */
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Couleur de fond du bouton de soumission */
 }
 
-/* Style du conteneur pour centrer le formulaire */
 .container {
-    width: 50%;
-    margin: 0 auto;
+    width: 50%; /* L'argeur */
+    margin: 0 auto; /* Marge automatique à gauche et à droite pour centrer le contenu */
 }
 
-/* Style du titre du formulaire */
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center; /* Centre le texte */
+    margin-bottom: 20px; /* Marge en bas */
 }

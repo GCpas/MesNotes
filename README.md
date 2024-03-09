@@ -1,7 +1,7 @@
 # MesNotes 📝
 ![](./documentation/logo_mesnotes_en_jpg.jpg)
 
-MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer des notes (posthite numérique).
+MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer des notes (post-it numérique).
 
 ## 🌟 Caractéristiques
 
@@ -34,4 +34,12 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 
 ## 📝 Structuration du projet
 
-Pour voir comment le projet à été penser, **tout est dans le dossier documentation !**
+Pour voir comment le projet a été pensé, **tout est dans le dossier documentation !**
+
+**Chaque ligne de code est commentait pour expliqué comment ça fonctionne !**
+
+## 🖥️ Vidéo de présentation
+
+**Présentation de mon projet :**
+
+https://youtu.be/pFH9Oe_SiH8

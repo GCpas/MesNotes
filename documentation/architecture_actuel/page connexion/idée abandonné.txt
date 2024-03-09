@@ -1,0 +1,4 @@
+Idée abandonné par rapport au prototype :
+
+- Mise en place d'une inscription car beaucoup de soucis lors du développement (erreur de lecture de la BDD pour vérifier si le compte existte déjà et erreur lors du commmit des valeurs).
+- Le titre BAZZARE.fr est devenu MesNotes pour être plus simple et colle plus au projet

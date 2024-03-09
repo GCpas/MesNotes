@@ -1,0 +1,6 @@
+Idée abandonné par rapport au prototype :
+
+- Le titre BAZZARE.fr est devenu MesNotes pour être plus simple et colle plus au projet
+- la date dans l'image (API météo) car aucune utilité
+- filtrer par date supprimé car beaucoup de soucis lors du développement (erreur lors de l'envoi)
+- Mise en place d'un menu déroulant pour choisir un titre pour modifier une note remplacer par un input text + ajout d'un input text pour mettre l'ancien message (précision pour bien choisir la bonne note) car beaucoup de soucis lors du développement (erreur d'affichage, ne veux pas lire la BDD)

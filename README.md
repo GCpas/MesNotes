@@ -7,7 +7,8 @@ MesNotes une interface utilisateur qui permet de créer, modifier ou supprimer d
 
 - **Créer, modifier ou supprimer de(s) note(s)**
 - **Filtrer vos notes**
-- **Voir la météo de votre ville**
+- **Voir la météo de votre ville (RESTful)**
+- **Tester le socket avec client.py**
 
 ## Installation
 
@@ -40,6 +41,6 @@ Pour voir comment le projet a été pensé, **tout est dans le dossier documenta
 
 ## 🖥️ Vidéo de présentation
 
-**Présentation de mon projet :**
+**Présentation de mon projet (Enregistré le 08/03/2024 par Geoffrey CARO) :**
 
 https://youtu.be/pFH9Oe_SiH8

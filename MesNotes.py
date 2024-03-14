@@ -5,6 +5,8 @@ from datetime import datetime, timedelta #datetime pour la gestion de la date et
 from sqlalchemy import func #des fonctionnalité spécifiques de SQLAlchemy
 from flask_restful import Api, Resource #Flask-RESTful ainsi que c'est fonctionnalité
 import requests #requests pour les requêtes HTTP
+import socket #pour utilisé les méthodes socket (créer un port 12345)
+import threading #Sert a faire un sorte de multitache (Flask + socket)
 
 #Initialisation de l'extension Flask
 app = Flask(__name__)
@@ -227,10 +229,41 @@ def supprimer_note(nom):
     else:
         return render_template('supprimer_note.html')
 
+def socket_server():
+    # Création du socket server
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind(('localhost', 12345))  # Adresse IP et port d'écoute
+    server_socket.listen(1)  # Maximum de connexions en attente
+
+    print("Serveur en attente de connexion...")
+
+    while True:
+        client_socket, client_address = server_socket.accept()  # Accepte la connexion entrante
+        print(f"Connexion reçue de {client_address}")
+
+        # Lecture des données du client
+        data = client_socket.recv(1024).decode()
+
+        if data == "est tu la ?":
+            # Réponse au client
+            client_socket.send("présent !".encode())
+
+        # Fermeture de la connexion
+        client_socket.close()
+
+#utilisation de threading pour faire le "multi-tache"
+def lancer_socket():
+    # Start the socket server in a separate thread
+    socket_thread = threading.Thread(target=socket_server)
+    socket_thread.daemon = True
+    socket_thread.start()
+
 #Exécution de Flask
 if __name__ == '__main__':
+    #Lance le socket appart en continu
+    lancer_socket()
     #Création de toutes les tables dans la BDD si elles n'existent pas
     with app.app_context():
         db.create_all()
     #Lancement de Flask en mode débogage
-    app.run(debug=True)
+    app.run()
